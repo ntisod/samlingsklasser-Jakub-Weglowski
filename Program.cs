@@ -10,45 +10,66 @@ namespace Samlingsklasser
     {
         static void Main(string[] args)
         {
-            //Skriv ut menyalternativ
-            Console.WriteLine("1. integer-lista.");
-            Console.WriteLine("2. double-lista.");
-            Console.WriteLine("3. Dictionary-exempel.");
-            Console.WriteLine("4. Tärningskast med Dictionary.");
-            Console.WriteLine("5. Tärningskast med SortedList (Övning 1).");
-            Console.WriteLine("6. Queue-exempel.");
-            Console.WriteLine("7. Stack-exempel.");
+          
+               
+                //Skriv ut menyalternativ
+                Console.WriteLine("1. integer-lista.");
+                Console.WriteLine("2. double-lista.");
+                Console.WriteLine("3. Dictionary-exempel.");
+                Console.WriteLine("4. Tärningskast med Dictionary.");
+                Console.WriteLine("5. Tärningskast med SortedList (Övning 1).");
+                Console.WriteLine("6. Queue-exempel.");
+                Console.WriteLine("7. Stack-exempel.");
+                Console.WriteLine("8. Övning 2.");
+                Console.WriteLine("9. Övning 3.");
+                Console.WriteLine("10. Övning 4.");
+                Console.WriteLine("11. Övning 5.");
+
+
+
 
             //Läs in menyval
             Console.Write("Ange siffra för vad du vill göra: ");
-            string val = Console.ReadLine();
-
-            //Använd en switch-sats för att anropa den metod som hör ihop med menyvalet.
-            switch(val){
-                case "1":
-                    IntegerLista();
-                    break;
-                case "2":
-                    DoubleLista();
-                    break;
-                case "3":
-                    DictionaryExempel();
-                    break;
-                case "4":
-                    DiceDictionary();
-                    break;
-                case "5":
-                    DiceSortedList();
-                    break;
-                case "6":
-                    QueueExempel();
-                    break;
-                case "7":
-                    StackExempel();
-                    break;
+                string val = Console.ReadLine();
+                //Använd en switch-sats för att anropa den metod som hör ihop med menyvalet.
+                switch (val) {
+                    case "1":
+                        IntegerLista();
+                        break;
+                    case "2":
+                        DoubleLista();
+                        break;
+                    case "3":
+                        DictionaryExempel();
+                        break;
+                    case "4":
+                        DiceDictionary();
+                        break;
+                    case "5":
+                        DiceSortedList();
+                        break;
+                    case "6":
+                        QueueExempel();
+                        break;
+                    case "7":
+                        StackExempel();
+                        break;
+                    case "8":
+                        Övning2();
+                        break;
+                    case "9":
+                        Övning3();
+                        break;
+                    case "10":
+                        Övning4();
+                        break;
+                    case "11":
+                        Övning5();
+                        break;
             }
 
-            Console.ReadKey();
+                Console.ReadKey();
+            
         }
 
         static void DictionaryExempel()
@@ -57,12 +78,12 @@ namespace Samlingsklasser
             Dictionary<string, int> personer = new Dictionary<string, int>();
 
             //Lägg till
-            personer.Add("Kalle", 10);
+            personer.Add("Kristian", 10);
             personer.Add("Sven", 12);
             personer.Add("Oskar", 10);
             personer.Add("Viggo", 13);
 
-            Console.WriteLine("Kalles ålder är: " + personer["Kalle"]);
+            Console.WriteLine("Kalles ålder är: " + personer["Kristian"]);
 
             //"Iterera" genom samlingen
             foreach (KeyValuePair<string, int> kvp in personer)
@@ -73,8 +94,31 @@ namespace Samlingsklasser
 
         static void DiceSortedList()
         {
-            //Övning 1
+            //Skapa en SortedList med int som nyckel och int som värde
+            SortedList<int, int> resultat = new SortedList<int, int>();
 
+            //skapa ett Random objekt för att slumpa
+            Random random = new Random();
+
+            //Gör tusen upprepnigar
+            for (int i = 0; i < 1000; i++)
+            {
+                //Slumpa tal mellan 1 och 6
+                int tal = random.Next(1, 7);
+
+                //Lägg nyckel om denna inte redan finns
+                if (!resultat.ContainsKey(tal))
+                    resultat.Add(tal, 0);
+
+                //Öka förekomsten av tal
+                resultat[tal]++;
+            }
+
+            //Visa resultatet
+            foreach (KeyValuePair<int, int> kvp in resultat)
+            {
+                Console.WriteLine("Nyckel: {0} Värde: {1}", kvp.Key, kvp.Value);
+            }
         }
 
         static void DiceDictionary()
@@ -212,6 +256,76 @@ namespace Samlingsklasser
             {
                 Console.WriteLine("Värde: " + d);
             }
+
+        }
+
+        static void Övning2()
+        {
+            //Skapar en lista med värde double
+            List<double> övning2 = new List<double>();
+
+            //Upprepar programmet
+            for (int i = 0; i < 1567891290; i++)
+            {
+                //Frågar efter tal användaren
+                Console.Write("Mata in ett tal:");
+                //Omvandlar talet från string till double
+                double tal = double.Parse(Console.ReadLine());
+                //Om användaren trycker på 0 så stängs programmet av 
+                if (tal == 0)
+                {
+                    //Stängs av när du matar in 0
+                    Environment.Exit(1);
+                }
+                //Om användaren inte matar in 0 så fortsätter programmet att köras
+                else
+                {
+                    //Lägger in talet in i listan
+                    övning2.Add(tal);
+                    //Skriver ut medelvärdet på talen som finns i listan
+                    Console.WriteLine("Medelvärde:" + övning2.Average());
+                }
+            }
+        }
+
+        static void Övning3()
+        {
+
+        }
+
+        static void Övning4()
+        {
+            Random tal1 = new Random();
+            var korten = new Dictionary<string, int>();
+            var colors = new string[] {"H","K","S","R"};
+            for (int i = 0; i <= 3; i++)
+            {
+                korten.Add(colors[i] + "Es", 1);
+                for (int a = 2; a <= 10; a++)
+                {
+                    korten.Add(colors[i] + a.ToString(), a);
+                }
+                korten.Add(colors[i] + "Kn", 11);
+                korten.Add(colors[i] + "D", 12);
+                korten.Add(colors[i] + "K", 13);
+            }
+            var keys = korten.Keys.ToArray();
+
+            int counter = 0;
+            for (int i = 0; i < 1000; i++)
+            {
+                int slump1 = tal1.Next(0, keys.Length);
+                int slump2 = tal1.Next(0, keys.Length);
+                if (korten[keys[slump2]] == korten[keys[slump1]])
+                {
+                    Console.WriteLine("Par");
+                    counter++;
+                }
+            }
+            Console.WriteLine(counter);
+        }
+        static void Övning5()
+        {
 
         }
     }
