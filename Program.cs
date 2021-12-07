@@ -288,9 +288,42 @@ namespace Samlingsklasser
             }
         }
 
+
         static void Övning3()
         {
+            {
+                Random random = new Random();
+                //Skapar en Lista
+                List<string> Kortlek = new List<string>();
 
+                var typ = new string[] { "H", "R", "K", "S" }; //hjärta, ruter, klöver och spader
+
+                for (int i = 0; i < 4; i++)
+                {
+
+                    Kortlek.Add(typ[i] + "E");
+
+                    for (int a = 2; a <= 10; a++)
+                    {
+
+                        Kortlek.Add(typ[i] + a.ToString());
+                    }
+
+                    Kortlek.Add(typ[i] + "Kn");
+                    Kortlek.Add(typ[i] + "D");
+                    Kortlek.Add(typ[i] + "K");
+                }
+
+                while (Kortlek.Count != 0)
+                {
+
+                    int slump = random.Next(0, Kortlek.Count);
+
+                    Console.WriteLine("Drar: " + Kortlek[slump]);
+
+                    Kortlek.RemoveAt(slump);
+                }
+            }
         }
 
         static void Övning4()
